@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from "react";
+
+import Hero from "./sections/Hero.jsx"
+import Cards from "./sections/Cards.jsx"
+import Header from "./sections/Header.jsx";
+import { MyContext } from "./MyContext.jsx";
+
 
 function App() {
+  const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+     setNav(!nav)
+  }
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <MyContext.Provider value={{ nav, setNav }}>
+      <div className="sticky top-0">
+      <Header />
+      </div>
+    
+    <Hero />
+    <Cards />
+    </MyContext.Provider>
     </div>
+    
   );
 }
 
